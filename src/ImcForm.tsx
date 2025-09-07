@@ -1,4 +1,5 @@
 import axios from 'axios'
+import './ImcForm.css'
 import React, { useState } from 'react'
 import { API } from './api'
 
@@ -25,6 +26,15 @@ function ImcForm() {
       return
     }
 
+    // Validación para valores menores a 500 kg y 3 metros de altura
+    if (alturaNum > 3 || pesoNum > 500) {
+      setError(
+        'Por favor, ingresa valores válidos (altura < 3m y peso < 500kg).'
+      )
+      setResultado(null)
+      return
+    }
+
     // Se extrae la URL de la API
     try {
       const response = await axios.post(API.IMC.CALCULAR, {
@@ -43,12 +53,14 @@ function ImcForm() {
 
   return (
     <div>
-      <div>
+      <div className="container">
         <h1>Calculadora de IMC</h1>
         <form onSubmit={handleSubmit}>
-          <div>
-            <label>Altura (m):</label>
+          <div className="input-group">
+            <label htmlFor="altura">Altura (m):</label>
             <input
+              id="altura"
+              name="altura"
               type="number"
               value={altura}
               onChange={e => setAltura(e.target.value)}
@@ -56,9 +68,11 @@ function ImcForm() {
               min="0.1"
             />
           </div>
-          <div>
-            <label>Peso (kg):</label>
+          <div className="input-group">
+            <label htmlFor="peso">Peso (kg):</label>
             <input
+              id="peso"
+              name="peso"
               type="number"
               value={peso}
               onChange={e => setPeso(e.target.value)}
