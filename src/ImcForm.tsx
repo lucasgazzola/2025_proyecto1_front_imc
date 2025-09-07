@@ -79,7 +79,9 @@ function ImcForm() {
               min="1"
             />
           </div>
-          <button type="submit">Calcular</button>
+          <button id="button-submit" type="submit">
+            Calcular
+          </button>
         </form>
 
         {resultado && (
