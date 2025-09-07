@@ -8,7 +8,6 @@ La idea es que cualquier persona pueda reproducir el proceso de manera sencilla.
 ## 🚀 1. Preparación de repositorios
 
 1. Hacer **fork** de los repositorios oficiales:
-
    - [Frontend](https://github.com/Programacion-Avanzada-UTN-FRVM/2025_proyecto1_front_imc)
    - [Backend](https://github.com/Programacion-Avanzada-UTN-FRVM/2025_proyecto1_back_imc)
 
@@ -34,8 +33,8 @@ En `main.ts`:
 - **Puerto dinámico**:
 
   ```ts
-  const port = process.env.PORT || 3000
-  await app.listen(port)
+  const port = process.env.PORT || 3000;
+  await app.listen(port);
   ```
 
   Azure necesita manejar el puerto automáticamente mediante `process.env.PORT`.
@@ -43,7 +42,7 @@ En `main.ts`:
 - **Habilitar CORS**:
   Se agregó:
   ```ts
-  app.enableCors()
+  app.enableCors();
   ```
   Esto permite que el frontend pueda conectarse al backend sin problemas.
 
@@ -54,13 +53,11 @@ En `main.ts`:
 1. Ingresar al [Portal de Azure](https://portal.azure.com).
 2. Ir a **App Services → Crear → Aplicación Web**.
 3. Configurar los siguientes parámetros:
-
    - **Nombre de la aplicación** (ej: `imc-backend`).
    - **Región** (ej: _South Central US_ o la más cercana).
    - **Plan de hosting**: capa gratuita o de estudiantes.
 
 4. Activar **Integración Continua (CI/CD)**:
-
    - Seleccionar GitHub como origen.
    - Elegir el repositorio del backend (fork) y la rama `master`.
    - Con esto, cada `git push` a `master` actualizará automáticamente la app en Azure.
@@ -107,7 +104,8 @@ Tras unos minutos, Vercel dará una **URL pública** para el frontend (ej:
 
 ## 🔗 6. URLs finales
 
-- **Frontend (Vercel)**: [https://calculadora-imc-front.vercel.app](#)
-- **Backend (Azure)**: [https://calculadora-imc-back.azurewebsites.net](#)
+- **Frontend**: [https://github.com/lucasgazzola/2025_proyecto1_front_imc](https://github.com/lucasgazzola/2025_proyecto1_front_imc)
+- **Backend**: [https://github.com/lucasgazzola/2025_proyecto1_back_imc](https://github.com/lucasgazzola/2025_proyecto1_back_imc)
+- **LiveUIRL**: [https://2025-proyecto1-front-imc-three.vercel.app/](https://2025-proyecto1-front-imc-three.vercel.app/)
 
 ---
