@@ -16,7 +16,7 @@ const mockedAxios = axios as unknown as {
 describe('ImcForm', () => {
   beforeEach(() => {
     vi.clearAllMocks()
-    render(<ImcForm />)
+    render(<ImcForm token='mockToken' />)
   })
 
   it('renderiza correctamente el formulario', () => {
