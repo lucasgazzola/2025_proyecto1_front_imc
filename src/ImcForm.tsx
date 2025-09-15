@@ -8,7 +8,11 @@ interface ImcResult {
   categoria: string
 }
 
-function ImcForm() {
+interface ImcFormProps {
+  token: string
+}
+
+function ImcForm({ token }: ImcFormProps) {
   const [altura, setAltura] = useState('')
   const [peso, setPeso] = useState('')
   const [resultado, setResultado] = useState<ImcResult | null>(null)
@@ -20,7 +24,7 @@ function ImcForm() {
     const alturaNum = parseFloat(altura)
     const pesoNum = parseFloat(peso)
 
-    if (isNaN(alturaNum) || isNaN(pesoNum) || alturaNum <= 0 || pesoNum <= 0) {
+    if (isNaN(alturaNum) || isNaN(pesoNum) || alturaNum < 0 || pesoNum < 0) {
       setError('Por favor, ingresa valores válidos (positivos y numéricos).')
       setResultado(null)
       return
@@ -37,16 +41,23 @@ function ImcForm() {
 
     // Se extrae la URL de la API
     try {
-      const response = await axios.post(API.IMC.CALCULAR, {
-        altura: alturaNum,
-        peso: pesoNum,
-      })
+      const response = await axios.post(
+        API.IMC.CALCULAR,
+        { altura: alturaNum, peso: pesoNum },
+        { headers: { Authorization: `Bearer ${token}` } }
+      )
       setResultado(response.data)
       setError('')
-    } catch (err) {
-      setError(
-        'Error al calcular el IMC. Verifica si el backend está corriendo.'
-      )
+    } catch (err: any) {
+      if (err.response?.status === 401) {
+        setError('Token inválido o expirado. Inicia sesión nuevamente.')
+      } else if (err.response?.status === 400) {
+        setError('Datos fuera de rango o inválidos.')
+      } else {
+        setError(
+          'Error al calcular el IMC. Verifica si el backend está corriendo.'
+        )
+      }
       setResultado(null)
     }
   }
@@ -86,7 +97,7 @@ function ImcForm() {
 
         {resultado && (
           <div>
-            <p>IMC: {resultado.imc.toFixed(2)}</p>
+            <p style={{ color: '#00bcd4' }}>IMC: {resultado.imc.toFixed(2)}</p>
             <p>Categoría: {resultado.categoria}</p>
           </div>
         )}
