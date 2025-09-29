@@ -8,6 +8,7 @@ La idea es que cualquier persona pueda reproducir el proceso de manera sencilla.
 ## 🚀 1. Preparación de repositorios
 
 1. Hacer **fork** de los repositorios oficiales:
+
    - [Frontend](https://github.com/Programacion-Avanzada-UTN-FRVM/2025_proyecto1_front_imc)
    - [Backend](https://github.com/Programacion-Avanzada-UTN-FRVM/2025_proyecto1_back_imc)
 
@@ -33,8 +34,8 @@ En `main.ts`:
 - **Puerto dinámico**:
 
   ```ts
-  const port = process.env.PORT || 3000;
-  await app.listen(port);
+  const port = process.env.PORT || 3000
+  await app.listen(port)
   ```
 
   Azure necesita manejar el puerto automáticamente mediante `process.env.PORT`.
@@ -42,7 +43,7 @@ En `main.ts`:
 - **Habilitar CORS**:
   Se agregó:
   ```ts
-  app.enableCors();
+  app.enableCors()
   ```
   Esto permite que el frontend pueda conectarse al backend sin problemas.
 
@@ -53,11 +54,13 @@ En `main.ts`:
 1. Ingresar al [Portal de Azure](https://portal.azure.com).
 2. Ir a **App Services → Crear → Aplicación Web**.
 3. Configurar los siguientes parámetros:
+
    - **Nombre de la aplicación** (ej: `imc-backend`).
    - **Región** (ej: _South Central US_ o la más cercana).
    - **Plan de hosting**: capa gratuita o de estudiantes.
 
 4. Activar **Integración Continua (CI/CD)**:
+
    - Seleccionar GitHub como origen.
    - Elegir el repositorio del backend (fork) y la rama `master`.
    - Con esto, cada `git push` a `master` actualizará automáticamente la app en Azure.
@@ -90,6 +93,36 @@ Tras unos minutos, Vercel dará una **URL pública** para el frontend (ej:
 
 - Acceder al **frontend en Vercel**.
 - Ingresar peso y altura → la app debe conectarse con el **backend en Azure** y mostrar el resultado del IMC.
+
+---
+
+## 📊 Gráficos de Estadísticas
+
+La página de **Estadísticas** utiliza gráficos interactivos para visualizar la evolución y el resumen de los datos del usuario. Los gráficos se implementan con las librerías [Chart.js](https://www.chartjs.org/) y [react-chartjs-2](https://react-chartjs-2.js.org/), que permiten una integración sencilla y personalizable en React.
+
+### Tipos de gráficos utilizados:
+
+- **Evolución de IMC (Línea):**
+
+  - Muestra cómo varía el Índice de Masa Corporal (IMC) del usuario a lo largo del tiempo.
+  - Eje X: fechas de los cálculos.
+  - Eje Y: valores de IMC.
+  - Permite visualizar tendencias y cambios en la salud.
+
+- **Evolución de Peso (Línea):**
+
+  - Representa la evolución del peso del usuario en cada registro.
+  - Eje X: fechas.
+  - Eje Y: peso en kg.
+  - Ayuda a identificar aumentos o descensos de peso.
+
+- **Cantidad por Categoría (Barras):**
+  - Muestra la cantidad de registros en cada categoría de IMC (ejemplo: Normal, Sobrepeso, Obesidad, etc.).
+  - Eje X: categorías.
+  - Eje Y: cantidad de registros.
+  - Permite ver la distribución de los resultados obtenidos.
+
+Todos los gráficos se adaptan al diseño visual de la app y permiten una experiencia clara y atractiva para el usuario.
 
 ---
 
