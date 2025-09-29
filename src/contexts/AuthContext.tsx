@@ -12,7 +12,7 @@ interface AuthContextType {
   isLoggedIn: boolean
 }
 
-const AuthContext = createContext<AuthContextType>({
+export const AuthContext = createContext<AuthContextType>({
   token: null,
   setToken: () => {},
   isLoggedIn: false,

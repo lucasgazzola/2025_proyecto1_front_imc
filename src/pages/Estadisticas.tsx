@@ -358,7 +358,7 @@ const Estadisticas: React.FC = () => {
                   </Card>
                   <Card className="bg-sky-100 border-sky-200 p-6 rounded-lg">
                     <h4 className="text-md font-semibold text-sky-700 mb-2">
-                      Conteo por Categoría
+                      Cantidad por Categoría
                     </h4>
                     <div className="min-h-[400px] pb-2">
                       <Bar
