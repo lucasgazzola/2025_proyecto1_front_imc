@@ -126,7 +126,7 @@ const Estadisticas: React.FC = () => {
 
   return (
     <div className="flex items-center justify-center min-h-[90vh] bg-sky-900">
-      <Card className="p-10 bg-white rounded-xl shadow-lg flex flex-col items-center">
+      <Card className="p-10 bg-white rounded-xl shadow-lg flex flex-col items-center w-full">
         <h2
           className="text-4xl font-bold mb-8 text-center text-sky-700"
           style={{ fontFamily: 'Montserrat, Arial, sans-serif' }}>
